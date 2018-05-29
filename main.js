@@ -7,8 +7,9 @@ window.addEventListener("load", init);
 const settings = {
     speed: 8,
     width: 600,
-    height: 800,
-    carWidth: 100,
+    height: 600,
+    carWidth: 50,
+    carHeight: 50,
     bulletSpeed: 20,
     enemySpeed: 5,
     counter: 0,
@@ -42,34 +43,34 @@ function init(){
     car.brand = "Ferrari";
     car.direction="right";
     car.x = settings.width/2-settings.carWidth/2;
-    car.y=settings.height-70;
+    car.y=settings.height-settings.carHeight;
     
     // BOX
     let box = new createjs.Shape();
     box.graphics.beginFill("#bada55");
-    box.graphics.drawRect(0,0, settings.carWidth, 60);
+    box.graphics.drawRect(0,0, settings.carWidth, settings.carHeight);
     car.addChild(box);
 
     // CIRCLE
-    let circle = new createjs.Shape();
+    /* let circle = new createjs.Shape();
     circle.graphics.beginFill("#c0ffee");
     circle.graphics.drawCircle(0,0, settings.bulletRadius);
     circle.x=20;
-    circle.y=60;
-    car.addChild(circle);
-
+    circle.y=60; */
+/*     car.addChild(circle);
+ */
     // CIRCLE2
-    let circle2 = new createjs.Shape();
+    /* let circle2 = new createjs.Shape();
     circle2.graphics.beginFill("#c0ffee");
     circle2.graphics.drawCircle(0,0, settings.bulletRadius);
     circle2.x=80;
     circle2.y=60;
     car.addChild(circle2);
-    stage.addChild(car);
+    stage.addChild(car); */
 
     // ADD CHILDREN
-    car.addChild(circle2);
-    stage.addChild(car);
+/*     car.addChild(circle2);
+ */    stage.addChild(car);
 
     // ADD CONTROL BUTTONS
 
@@ -101,8 +102,8 @@ function init(){
             settings.keys.right = false;
         } 
         // ON SPACE
-        if(keyName === " "){
-         let bullet = getEntity(settings.bulletRadius, car.x, car.y);
+        if(keyName === " "){ 
+         let bullet = getEntity(settings.bulletRadius, (car.x+settings.carWidth/2), car.y);
           bullets.push(bullet);
         }
     })
@@ -208,8 +209,8 @@ function enemiesVsHero() {
             console.log("An enemy hit the car");
             stage.removeChild(e);
             enemies.splice(i, 1);
-        }
-    })
+        };
+    });
 }
 
 
