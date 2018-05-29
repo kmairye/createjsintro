@@ -194,9 +194,30 @@ function bulletsVsEnemies() {
 }
 
 
+
+// ENEMIES VS HERO
+function enemiesVsHero() {
+    let imaginaryCir = {
+        x: car.x + settings.carWidth / 2,
+        y: car.y + 60/2,
+        r: 40
+    };
+    //console.log(imaginaryCir);
+    enemies.forEach((e,i) => {
+        if(distance(e, imaginaryCir) < 60) {
+            console.log("An enemy hit the car");
+            stage.removeChild(e);
+            enemies.splice(i, 1);
+        }
+    })
+}
+
+
 // HIT DETECTION
 function hitDetection() {
     bulletsVsEnemies();
+    enemiesVsHero();
+    
 }
 
 // THE TOCK FUNCTION
